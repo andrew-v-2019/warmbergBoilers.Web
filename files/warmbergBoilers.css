@@ -242,10 +242,23 @@ table {
 }
 
 .nav-item {
-    font-size: 19px;
+    font-size: 15px;
+}
+
+.nav {
+    border-bottom: solid 1px #848484;
 }
 
 @media screen and (min-device-width: 1024px) {
+    .nav {
+        display: flex;
+        justify-content: center;
+        background-color: white;
+        border-bottom: solid 3px #848484;
+        align-items: center;
+        width: 100%;
+        z-index: 100;
+    }
     #topBtn {
         bottom: 15px;
     }
