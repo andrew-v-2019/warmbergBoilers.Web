@@ -8,6 +8,8 @@ html {
 
 .page-container {
     background-color: #a9a9a9;
+    opacity: 0;
+    transition: all 0.5s;
 }
 
 .head {
@@ -67,6 +69,7 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
+    opacity: 1;
 }
 
 h2 {
@@ -185,7 +188,7 @@ table {
     border-right: 2px solid #E8E8E8;
     padding-right: 5px;
     padding-left: 5px;
-    transition: all 0.5s;
+    transition: all .7s;
     opacity: .7;
 }
 

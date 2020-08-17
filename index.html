@@ -517,9 +517,12 @@
     <script>
 
         function ready() {
+            let el = document.getElementsByClassName('page-container')[0];
+            el.style.opacity = 1;
             topFunction();
             let activeSectionId = getActiveSection();
             setActiveNav(getNavItemBySectionId(activeSectionId));
+
 
             topBtn.onclick = function () {
                 topFunction();
@@ -567,6 +570,7 @@
                 let el = document.getElementById(id);
                 if (!el) return;
                 el.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'start' });
+
             }
 
             function setActiveNav(id) {
@@ -584,6 +588,8 @@
                     }
                 })
             }
+
+
 
             function getActiveSection() {
                 let sectionIds = ['info', 'char', 'scheme', 'contacts'];
@@ -605,8 +611,6 @@
 
                     if (!h2) return;
                     let y = h2.getBoundingClientRect().y;
-
-
                     if (y < 150) {
                         activeSecId = sectionId;
 
@@ -620,6 +624,7 @@
             function onScroll() {
                 let activeSectionId = getActiveSection();
                 setActiveNav(getNavItemBySectionId(activeSectionId));
+
 
                 if (!headerIsVisible()) {
                     let nav = document.getElementById('nav');
