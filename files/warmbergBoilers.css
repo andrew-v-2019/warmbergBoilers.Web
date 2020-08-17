@@ -116,6 +116,7 @@ table {
     flex-direction: column;
     align-items: flex-start;
     padding-top: 20px;
+    padding-bottom: 60px;
 }
 
 .tel:after {
