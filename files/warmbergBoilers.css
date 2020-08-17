@@ -242,11 +242,11 @@ table {
 }
 
 .nav-item {
-    font-size: 15px;
+    font-size: 19px;
 }
 
 .nav {
-    border-bottom: solid 1px #848484;
+    border-bottom: solid 2px #848484;
 }
 
 @media screen and (min-device-width: 1024px) {
