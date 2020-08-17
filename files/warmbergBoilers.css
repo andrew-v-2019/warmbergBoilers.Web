@@ -125,8 +125,12 @@ table {
 }
 
 .mail:after {
-    content: '\1F584'/*'\2709'*/
+    content: '📧'/*'\2709'*/
     ;
+}
+
+.mail {
+    margin-left: -3px;
 }
 
 .addr:after {
@@ -283,11 +287,5 @@ table {
     }
     .nav-item {
         font-size: 30px;
-        color: #5d8aa8;
-        border-right: 2px solid #E8E8E8;
-        padding-right: 5px;
-        padding-left: 5px;
-        transition: all 0.5s;
-        opacity: .7;
     }
 }
