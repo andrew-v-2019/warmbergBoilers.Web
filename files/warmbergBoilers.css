@@ -107,10 +107,6 @@ table {
     background-color: #545454;
 }
 
-.scheme h2 {
-    padding-top: 20px;
-}
-
 .contact-card {
     display: flex;
     flex-direction: column;
