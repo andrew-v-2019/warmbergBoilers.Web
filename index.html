@@ -518,28 +518,49 @@
 
         function ready() {
             topFunction();
+            let activeSectionId = getActiveSection();
+            setActiveNav(getNavItemBySectionId(activeSectionId));
 
             topBtn.onclick = function () {
                 topFunction();
             };
+
+            function getNavItemBySectionId(sectionId) {
+                if (sectionId === 'info') {
+                    return 'descriptionNavItem';
+                }
+
+                if (sectionId === 'char') {
+                    return 'charNavItem';
+                }
+
+                if (sectionId === 'scheme') {
+                    return 'schemeNavItem';
+                }
+
+                if (sectionId === 'contacts') {
+                    return 'contactNavItem';
+                }
+            }
+
             descriptionNavItem.onclick = function () {
                 scrollTo("info");
-                setActiveNav("descriptionNavItem")
+                setActiveNav(getNavItemBySectionId('info'));
             };
 
             charNavItem.onclick = function () {
                 scrollTo("char");
-                setActiveNav("charNavItem");
+                setActiveNav(getNavItemBySectionId('char'));
             };
 
             schemeNavItem.onclick = function () {
                 scrollTo("scheme");
-                setActiveNav("schemeNavItem");
+                setActiveNav(getNavItemBySectionId('scheme'));
             };
 
             contactNavItem.onclick = function () {
                 scrollTo("contacts");
-                setActiveNav("contactNavItem");
+                setActiveNav(getNavItemBySectionId('contacts'));
             };
 
             function scrollTo(id) {
@@ -548,8 +569,8 @@
                 el.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'start' });
             }
 
-
             function setActiveNav(id) {
+                if (!id) return;
                 let navs = ['descriptionNavItem', 'charNavItem', 'schemeNavItem', 'contactNavItem'];
                 navs.forEach(function (nav) {
 
@@ -562,12 +583,45 @@
                         el.classList.add('active')
                     }
                 })
+            }
 
+            function getActiveSection() {
+                let sectionIds = ['info', 'char', 'scheme', 'contacts'];
+
+                if (headerIsVisible()) {
+                    return 'info';
+                }
+
+                let contacts = document.getElementById('contacts');
+
+                if (contacts.getBoundingClientRect().bottom < window.innerHeight) {
+                    return 'contacts';
+                }
+
+                let activeSecId = null;
+                sectionIds.forEach(sectionId => {
+                    let section = document.getElementById(sectionId);
+                    let h2 = section.querySelector('h2');
+
+                    if (!h2) return;
+                    let y = h2.getBoundingClientRect().y;
+
+
+                    if (y < 150) {
+                        activeSecId = sectionId;
+
+                        return;
+                    }
+                });
+
+                return activeSecId;
             }
 
             function onScroll() {
-                let head = document.getElementById('head');
-                if (!elementIsVisible(head)) {
+                let activeSectionId = getActiveSection();
+                setActiveNav(getNavItemBySectionId(activeSectionId));
+
+                if (!headerIsVisible()) {
                     let nav = document.getElementById('nav');
                     nav.style.position = "fixed";
                     nav.style.top = 0;
@@ -583,13 +637,11 @@
                 } else {
                     topButton.style.opacity = 0;
                 }
-
-
             }
 
 
-
-            function elementIsVisible(el) {
+            function headerIsVisible() {
+                let el = document.getElementById('head');
                 if (!el) return false;
                 let rect = el.getBoundingClientRect();
                 if (!rect) return false;
@@ -599,14 +651,11 @@
 
 
             function topFunction() {
-
                 scrollTo('head');
             }
 
-
             window.addEventListener('scroll', onScroll);
         }
-
 
 
         document.addEventListener("DOMContentLoaded", ready);
