@@ -64,7 +64,6 @@ html {
     color: white;
     font-size: 19px;
     transition: all 0.5s;
-    min-height: 850px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -283,5 +282,8 @@ table {
     }
     .nav-item {
         font-size: 30px;
+    }
+    .section {
+        min-height: 850px;
     }
 }
