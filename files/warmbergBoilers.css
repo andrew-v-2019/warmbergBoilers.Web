@@ -92,6 +92,7 @@ table {
     justify-content: center;
     width: 100%;
     margin-bottom: 40px;
+    opacity: .7;
 }
 
 .scheme {

@@ -40,7 +40,7 @@
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <link href="./files/warmbergBoilers.css" rel="stylesheet">
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.4.1/jquery.fancybox.min.css" rel="stylesheet" />
 
 </head>
 
@@ -89,17 +89,16 @@
                     <li>Информация о работе котла отображается на ярком графическом дисплее.</li>
                     <li>Контроллер автоматически настраивает оптимальные параметры работы, и не требует участия
                         пользователя.</li>
-                    <li>Корпус котла выполнен из утолщённой стали, покрытой порошковой краской с высокой устойчивостью к
-                        коррозии.</li>
+                    <li>Корпус котла покрыт высокотемпературной краской с высокой устойчивостью к коррозии.</li>
 
-                    <li>Установлен мощный червячный мотор-редуктор VЕМРЕR с системой защиты от заклинивания шнека.</li>
+                    <li>Установлен мощный червячный мотор-редуктор VЕМРЕR с системой защиты электродвигателя.</li>
 
-                    <li>Оснащен радиально-поворотной ретортной горелкой и системой контроля количества топлива в
-                        бункере.</li>
+                    <li>Оснащен радиально-поворотной ретортной горелкой.</li>
                 </ul>
 
             </div>
         </div>
+
 
 
         <div class="section char" id="char">
@@ -360,36 +359,6 @@
 
                         <tr>
                             <td>
-                                Масса в комплекте
-                            </td>
-
-                            <td>
-                                425
-                            </td>
-
-                            <td>
-                                430
-                            </td>
-
-                            <td>
-                                510
-                            </td>
-
-                            <td>
-                                585
-                            </td>
-
-                            <td>
-                                615
-                            </td>
-
-                            <td>
-                                735
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
                                 Номинальное напряжение питания, В
                             </td>
 
@@ -515,12 +484,27 @@
         </div>
 
     </div>
-
-
-
     </div>
 
+
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.6/jquery.fancybox.min.js"></script>
     <script>
+
+
+        $(function () {
+            $('#myCarousel').carousel(
+                {
+                    cycle: true,
+                    interval: 2700
+                });
+            $("[data-fancybox]").fancybox({ loop: true });
+            $.fancybox.defaults.animationEffect = "zoom-in-out";
+
+        });
 
         function ready() {
             let el = document.getElementsByClassName('page-container')[0];
@@ -672,6 +656,7 @@
         document.addEventListener("DOMContentLoaded", ready);
 
     </script>
+
 
 
 </body>
