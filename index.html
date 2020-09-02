@@ -40,7 +40,10 @@
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <link href="./files/warmbergBoilers.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.4.1/jquery.fancybox.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="splide/css/splide.min.css" />
+    <link rel="stylesheet" type="text/css" href="splide/css/splide-core.min.css" />
+    <link rel="stylesheet" type="text/css" href="splide/css/themes/splide-default.min.css" />
+
 
 </head>
 
@@ -71,6 +74,7 @@
         <div class="nav" id="nav">
 
             <div class="nav-item" id="descriptionNavItem"> Описание </div>
+            <div class="nav-item" id="photosNavItem"> Фотографии </div>
             <div class="nav-item" id="charNavItem"> Характеристики </div>
             <div class="nav-item" id="schemeNavItem"> Схемы </div>
             <div class="nav-item" id="contactNavItem"> Контакты </div>
@@ -96,6 +100,28 @@
                     <li>Оснащен радиально-поворотной ретортной горелкой.</li>
                 </ul>
 
+            </div>
+        </div>
+
+        <div class="section photos" id="photos">
+
+            <div class="container">
+                <h2>Фотографии</h2>
+                <div id="image-slider" class="splide">
+                    <div class="splide__track">
+                        <ul class="splide__list">
+                            <li class="splide__slide">
+                                <img src="files/image1.jfif">
+                            </li>
+                            <li class="splide__slide">
+                                <img src="files/image2.jfif">
+                            </li>
+                            <li class="splide__slide">
+                                <img src="files/image3.jfif">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -445,7 +471,8 @@
                             <li> <span class="tel"> </span> <a href="tel:+79029903765">+7 (902) 990 37 65 </a> </li>
 
                             <li> <span class="mail"> </span> <a
-                                    href="mailto:warmberg@mail.ru?subject=Твердотопливные котлы">warmberg@mail.ru </a>
+                                    href="mailto:warmberg@mail.ru?subject=Твердотопливные котлы">warmberg@mail.ru
+                                </a>
                             </li>
                             <li> <span class="clock"> </span> 09:00-18:00 </li>
                         </ul>
@@ -488,21 +515,18 @@
 
 
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.6/jquery.fancybox.min.js"></script>
+    <script type="text/javascript" src="splide/js/splide.min.js"></script>
     <script>
 
 
         $(function () {
-            $('#myCarousel').carousel(
-                {
-                    cycle: true,
-                    interval: 2700
-                });
-            $("[data-fancybox]").fancybox({ loop: true });
-            $.fancybox.defaults.animationEffect = "zoom-in-out";
+            new Splide('#image-slider', {
+                arrows: false,
+                autoplay: true,
+                interval: 2000,
+                autoplay: true,
+                rewind: true
+            }).mount();
 
         });
 
@@ -534,7 +558,16 @@
                 if (sectionId === 'contacts') {
                     return 'contactNavItem';
                 }
+
+                if (sectionId === 'photos') {
+                    return 'photosNavItem';
+                }
             }
+
+            photosNavItem.onclick = function () {
+                scrollTo("photos");
+                setActiveNav(getNavItemBySectionId('photos'));
+            };
 
             descriptionNavItem.onclick = function () {
                 scrollTo("info");
@@ -559,13 +592,19 @@
             function scrollTo(id) {
                 let el = document.getElementById(id);
                 if (!el) return;
-                el.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'start' });
+                el.scrollIntoView(
+                    {
+                        behavior: 'smooth',
+                        block: 'center',
+                        inline: 'start'
+                    }
+                );
 
             }
 
             function setActiveNav(id) {
                 if (!id) return;
-                let navs = ['descriptionNavItem', 'charNavItem', 'schemeNavItem', 'contactNavItem'];
+                let navs = ['descriptionNavItem', 'charNavItem', 'schemeNavItem', 'contactNavItem', 'photosNavItem'];
                 navs.forEach(function (nav) {
 
                     let el = document.getElementById(nav);
@@ -582,7 +621,7 @@
 
 
             function getActiveSection() {
-                let sectionIds = ['info', 'char', 'scheme', 'contacts'];
+                let sectionIds = ['info', 'char', 'scheme', 'contacts', 'photos'];
 
                 if (headerIsVisible()) {
                     return 'info';
@@ -601,9 +640,9 @@
 
                     if (!h2) return;
                     let y = h2.getBoundingClientRect().y;
-                    if (y < 150) {
-                        activeSecId = sectionId;
 
+                    if (y > 0 && y < 150) {
+                        activeSecId = sectionId;
                         return;
                     }
                 });
@@ -614,7 +653,6 @@
             function onScroll() {
                 let activeSectionId = getActiveSection();
                 setActiveNav(getNavItemBySectionId(activeSectionId));
-
 
                 if (!headerIsVisible()) {
                     let nav = document.getElementById('nav');
