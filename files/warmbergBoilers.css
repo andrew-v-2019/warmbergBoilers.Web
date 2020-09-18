@@ -147,6 +147,10 @@ table {
     content: '\1F557';
 }
 
+.star:after {
+    content: '\272A';
+}
+
 .contacts {
     padding-top: 40px;
     padding-bottom: 20px;
