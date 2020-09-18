@@ -264,8 +264,8 @@ table {
     justify-content: center !important;
 }
 
-.photos {
-    display: none;
+.spl-image {
+    height: 50% !important;
 }
 
 @media screen and (min-device-width: 1024px) {
