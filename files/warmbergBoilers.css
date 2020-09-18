@@ -316,4 +316,7 @@ table {
         padding-bottom: 70px;
         display: block;
     }
+    .spl-image {
+        height: auto !important;
+    }
 }
